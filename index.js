@@ -42,7 +42,14 @@ const createTeamManager = () => {
         ans.tmOffice
       );
       team.push(manager);
-      console.log(team);
+      console.table(team, [
+        "name",
+        "id",
+        "email",
+        "officeNumber",
+        "github",
+        "school",
+      ]);
       addTeammate();
     });
 };
@@ -74,7 +81,14 @@ const addTeammate = () => {
           createIntern();
           break;
         case "Finish building your team":
-          console.log(team);
+          console.table(team, [
+            "name",
+            "id",
+            "email",
+            "officeNumber",
+            "github",
+            "school",
+          ]);
           const teamHtml = generateHtml(team);
 
           fs.writeFile("index.html", teamHtml, (err) => {
@@ -124,7 +138,14 @@ const createEngineer = () => {
         ans.engineerGithub
       );
       team.push(engineer);
-      console.log(team);
+      console.table(team, [
+        "name",
+        "id",
+        "email",
+        "officeNumber",
+        "github",
+        "school",
+      ]);
       addTeammate();
     });
 };
@@ -162,7 +183,14 @@ const createIntern = () => {
         ans.internSchool
       );
       team.push(intern);
-      console.log(team);
+      console.table(team, [
+        "name",
+        "id",
+        "email",
+        "officeNumber",
+        "github",
+        "school",
+      ]);
       addTeammate();
     });
 };

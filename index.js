@@ -1,10 +1,10 @@
 const inquirer = require("inquirer");
-const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
 const { type } = require("os");
+const { log } = require("console");
 
 const team = [];
 
@@ -61,15 +61,22 @@ const addTeammate = () => {
       },
     ])
     .then((ans) => {
-      switch (ans.addTeammate) {
+      console.log(ans.addteammate);
+      //need a function to close recursion
+      switch (ans.addteammate) {
         case "Add an engineer":
+          console.log("create engineer selected!");
           createEngineer();
           break;
         case "Add an intern":
+          console.log("create intern selected!");
           createIntern();
           break;
         case "Finish building your team":
           console.log(team);
+          break;
+        default:
+          console.log("something is broken");
       }
 
       console.log(ans);
@@ -103,7 +110,7 @@ const createEngineer = () => {
     .then((ans) => {
       const engineer = new Engineer(
         ans.engineerName,
-        ans.engineerID,
+        ans.engineerId,
         ans.engineerEmail,
         ans.engineerGithub
       );
@@ -113,6 +120,7 @@ const createEngineer = () => {
     });
 };
 
+//need a function for add intern
 const createIntern = () => {
   inquirer
     .prompt([
@@ -140,17 +148,14 @@ const createIntern = () => {
     .then((ans) => {
       const intern = new Intern(
         ans.internName,
-        ans.internID,
+        ans.internId,
         ans.internEmail,
-        ans.internGithub
+        ans.internSchool
       );
       team.push(intern);
       console.table(team);
       addTeammate();
     });
 };
-//need a function for add intern
-//need a function to close recursion
-//need a function to
 
 createTeamManager();

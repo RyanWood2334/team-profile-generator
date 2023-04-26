@@ -91,7 +91,7 @@ const addTeammate = () => {
           ]);
           const teamHtml = generateHtml(team);
 
-          fs.writeFile("index.html", teamHtml, (err) => {
+          fs.writeFile("./dist/index.html", teamHtml, (err) => {
             if (err) {
               console.log("something has gone wrong");
               throw err;

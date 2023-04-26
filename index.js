@@ -3,6 +3,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 const fs = require("fs");
+const generateHtml = require("./util/generateHtml");
 const { type } = require("os");
 const { log } = require("console");
 
@@ -41,7 +42,7 @@ const createTeamManager = () => {
         ans.tmOffice
       );
       team.push(manager);
-      console.table(team);
+      console.log(team);
       addTeammate();
     });
 };
@@ -74,6 +75,14 @@ const addTeammate = () => {
           break;
         case "Finish building your team":
           console.log(team);
+          const teamHtml = generateHtml(team);
+
+          fs.writeFile("index.html", teamHtml, (err) => {
+            if (err) {
+              console.log("something has gone wrong");
+              throw err;
+            } else console.log("success!");
+          });
           break;
         default:
           console.log("something is broken");
@@ -94,7 +103,7 @@ const createEngineer = () => {
       {
         type: "input",
         name: "engineerId",
-        message: "What is your Engineer's employee ID??",
+        message: "What is your Engineer's employee ID?",
       },
       {
         type: "input",
@@ -115,7 +124,7 @@ const createEngineer = () => {
         ans.engineerGithub
       );
       team.push(engineer);
-      console.table(team);
+      console.log(team);
       addTeammate();
     });
 };
@@ -132,7 +141,7 @@ const createIntern = () => {
       {
         type: "input",
         name: "internId",
-        message: "What is your Intern's employee ID??",
+        message: "What is your Intern's employee ID?",
       },
       {
         type: "input",
@@ -153,7 +162,7 @@ const createIntern = () => {
         ans.internSchool
       );
       team.push(intern);
-      console.table(team);
+      console.log(team);
       addTeammate();
     });
 };
